@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import ContactView from '../views/ContactView.vue'
-import 'bootstrap/dist/css/bootstrap.css'
+import ContactCreate from '../views/ContactCreate.vue'
 
 const routes = [
   {
@@ -16,9 +16,13 @@ const routes = [
     component: LoginView
   },
   {
-    path: '/contacst/:id',
+    path: '/contacts/:id',
     name: 'contact',
     component: ContactView
+  },
+  {
+    path: '/contacts/create',
+    component: ContactCreate
   }
 ]
 
