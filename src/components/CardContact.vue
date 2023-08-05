@@ -36,6 +36,7 @@ export default {
       }).then((result) => {
       if (result.isConfirmed) {
         removeItem(id);
+        this.$emit('delete')
       }
     })
     }
