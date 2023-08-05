@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import 'bootstrap/dist/css/bootstrap.css'
 
 const routes = [
   {
