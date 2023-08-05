@@ -1,6 +1,9 @@
 <template>
   <section class="row">
-    <h2>Contact List</h2>
+    <div class="d-flex justify-content-between mb-3">
+      <h2 class="m-0">Contact List</h2>
+      <RouterLink to="/" class="btn btn-success fw-bold">New</RouterLink>
+    </div>
     <div v-for="contact in contacts" :key="contact.id" class="col-lg-4">
       <CardContact :info="contact"/>
     </div>

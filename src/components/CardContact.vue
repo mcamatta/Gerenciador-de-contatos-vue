@@ -10,8 +10,8 @@
                 </div>
             </div>
             <div class="d-flex gap-2 mt-3 justify-content-end">
-                <button class="btn btn-primary">Details</button>
-                <button class="btn btn-danger">Delete</button>
+                <RouterLink :to="{ name: 'contact', params: { id: info.id }}" class="text-primary">Details</RouterLink>
+                <a href="#" class="text-danger">Delete</a>
             </div>
         </div>
     </div>

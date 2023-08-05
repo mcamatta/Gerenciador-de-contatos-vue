@@ -5,6 +5,7 @@
         <h1>
           <RouterLink to="/" class="navbar-brand fs-2">AlfaSoft Contacts</RouterLink>
         </h1>
+        <RouterLink to="/login" class="fs-5">Login</RouterLink>
       </div>
     </nav>
   </header>
