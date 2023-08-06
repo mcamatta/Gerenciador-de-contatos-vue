@@ -5,7 +5,8 @@
         <h1>
           <RouterLink to="/" class="navbar-brand fs-2">AlfaSoft Contacts</RouterLink>
         </h1>
-        <RouterLink to="/login" class="fs-5">Login</RouterLink>
+        <RouterLink v-if="!isAuthenticate" to="/login" class="fs-5">Login</RouterLink>
+        <a v-else class="fs-5">Logout</a>
       </div>
     </nav>
   </header>
@@ -13,6 +14,16 @@
     <RouterView />
   </main>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isAuthenticate: localStorage.getItem('auth') === 'true'
+    }
+  }
+}
+</script>
 
 <style>
 #app {
