@@ -1,4 +1,5 @@
 <template>
+  <AppBreadcrumb :items="[{name: 'Home', url: {name: 'home'}}]"/>
   <div class="d-flex justify-content-between mb-3">
     <h2 class="m-0">Contact List</h2>
     <RouterLink to="/contacts/create" class="btn btn-success fw-bold">New</RouterLink>
@@ -18,6 +19,7 @@
 <script>
 import { getItems } from '@/services/local-storage'
 import CardContact from '@/components/CardContact.vue'
+import AppBreadcrumb from '@/components/AppBreadcrumb.vue';
 export default {
   name: 'HomeView',
   data() {
@@ -34,7 +36,8 @@ export default {
     }
   },
   components: {
-    CardContact
-  }
+    CardContact,
+    AppBreadcrumb
+}
 }
 </script>

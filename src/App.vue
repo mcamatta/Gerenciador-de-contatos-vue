@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar bg-light mb-3 py-3">
+    <nav class="navbar bg-light mb-5 py-3">
       <div class="container">
         <h1>
           <RouterLink to="/" class="navbar-brand fs-2">AlfaSoft Contacts</RouterLink>
