@@ -3,8 +3,14 @@
     <div class="col-lg-7 mx-auto">
       <div class="row g-3">
         <div class="col-12">
-          <label for="photo" class="form-label">Photo</label>
-          <input class="form-control" type="file" id="photo" accept="image/*">
+          <div v-if="!form.picture">
+            <label for="picture" class="form-label">Picture</label>
+            <input class="form-control" @change="onFileChange" type="file" id="picture" accept="image/*">
+          </div>
+          <div v-else class="d-flex flex-column gap-2 align-items-start">
+            <img :src="form.picture" class="rounded-circle ms-2">
+            <button @click="removeImage" class="btn btn-sm">Remove image</button>
+          </div>
         </div>
         <div class="col-12">
           <label for="name" class="form-label">Name</label>
@@ -38,8 +44,39 @@ export default {
         name: this.contact?.name || null,
         contact: this.contact?.contact || null,
         email: this.contact?.email || null,
+        picture: this.contact?.picture || null
       }
+    }
+  },
+  methods: {
+    onFileChange(e) {
+      const file = e.target.files || e.dataTransfer.files
+
+      if(!file.length) {
+        return
+      }
+      this.createImage(file[0])
+    },
+    createImage(file) {
+      let vm = this
+      let reader = new FileReader()
+
+      reader.onload = (e) => {
+        vm.form.picture = e.target.result
+      }
+
+      reader.readAsDataURL(file);
+    },
+    removeImage() {
+      this.form.picture = null
     }
   }
 }
 </script>
+<style scoped>
+img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+</style>

@@ -4,7 +4,7 @@
     <RouterLink to="/" class="btn btn-primary fw-bold">Back</RouterLink>
   </div>
   <div class="d-flex gap-4 align-items-center">
-    <img src="https://placehold.co/150" alt class="rounded-circle">
+    <img :src="contact.picture" alt class="rounded-circle">
     <div>
       <h3 class="fs-3">{{ contact.name }}</h3>
       <p class="text-secondary fs-5 mb-0">{{ contact.contact }}</p>
@@ -27,3 +27,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+</style>

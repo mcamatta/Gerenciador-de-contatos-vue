@@ -2,7 +2,7 @@
   <div class="card shadow">
     <div class="card-body">
       <div class="d-flex gap-2">
-        <img :src="info.photo" alt class="rounded-circle">
+        <img :src="info.picture" alt class="rounded-circle">
         <div>
           <h3 class="card-title fs-5">{{ info.name }}</h3>
           <p class="card-subtitle">{{ info.contact }}</p>
