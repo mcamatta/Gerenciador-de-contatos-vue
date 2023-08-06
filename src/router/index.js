@@ -40,7 +40,7 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   if(to.name != 'home' && to.name != 'login' && !auth.isAuthenticate) {
-    return false;
+    return { name: 'home' }
   }
 })
 
