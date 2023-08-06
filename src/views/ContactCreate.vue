@@ -6,23 +6,24 @@
     <RouterLink to="/" class="btn btn-primary fw-bold">Back</RouterLink>
   </div>
 
-  <FormContact @onSubmit="store" :error="error" />
+  <FormContact @onSubmit="storeData" :error="error" />
 </template>
 <script>
-import { store } from '@/services/local-storage'
 import FormContact from '@/components/FormContact.vue'
 import AppBreadcrumb from '@/components/AppBreadcrumb.vue'
+import storageMixin from '@/storageMixin'
 
 export default {
+  mixins: [storageMixin],
   data() {
     return {
       error: ''
     }
   },
   methods: {
-    store(form) {
+    storeData(form) {
       try {
-        let id = store(form)
+        let id = this.store(form)
         this.$router.push({
           name: 'contact',
           params: { id: id }

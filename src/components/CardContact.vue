@@ -19,17 +19,19 @@
 </template>
 <script>
 import { auth } from '@/auth'
-import { removeItem } from '@/services/local-storage'
+import storageMixin from '@/storageMixin'
 
 export default {
   props: {
     info: Object
   },
+  mixins: [storageMixin],
   setup() {
     return { auth }
   },
   methods: {
     openModal(id) {
+      let vm = this
       this.$swal({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -40,7 +42,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
       if (result.isConfirmed) {
-        removeItem(id);
+        vm.removeItem(id);
         this.$emit('delete')
       }
     })

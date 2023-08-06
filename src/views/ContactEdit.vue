@@ -7,14 +7,15 @@
     <RouterLink :to="{ name: 'contact', params: { id: contact.id } }" class="btn btn-primary fw-bold">Back</RouterLink>
   </div>
 
-  <FormContact :contact="contact" @onSubmit="update" :error="error" />
+  <FormContact :contact="contact" @onSubmit="updateData" :error="error" />
 </template>
 <script>
-import AppBreadcrumb from '@/components/AppBreadcrumb.vue';
-import FormContact from '@/components/FormContact.vue';
-import { findItem, update } from '@/services/local-storage';
+import storageMixin from '@/storageMixin'
+import AppBreadcrumb from '@/components/AppBreadcrumb.vue'
+import FormContact from '@/components/FormContact.vue'
 
 export default {
+  mixins: [storageMixin],
   data() {
     return {
       contact: [],
@@ -22,12 +23,12 @@ export default {
     };
   },
   created() {
-    this.contact = findItem(this.$route.params.id);
+    this.contact = this.findItem(this.$route.params.id);
   },
   methods: {
-    update(form) {
+    updateData(form) {
       try {
-        update(form)
+        this.update(form)
         this.$router.push({
           name: 'contact',
           params: { id: this.contact.id }

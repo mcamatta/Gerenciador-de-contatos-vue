@@ -16,17 +16,18 @@
   </div>
 </template>
 <script>
-import AppBreadcrumb from '@/components/AppBreadcrumb.vue';
-import { findItem } from '@/services/local-storage';
+import storageMixin from '@/storageMixin'
+import AppBreadcrumb from '@/components/AppBreadcrumb.vue'
 
 export default {
+  mixins: [storageMixin],
   data() {
     return {
       contact: Object
-    };
+    }
   },
   mounted() {
-    this.contact = findItem(this.$route.params.id);
+    this.contact = this.findItem(this.$route.params.id)
   },
   components: { AppBreadcrumb }
 }

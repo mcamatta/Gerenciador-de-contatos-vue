@@ -1,12 +1,11 @@
 <template>
-  <AppBreadcrumb :items="[{ name: 'Home', url: { name: 'home' } }]" />
   <div class="d-flex justify-content-between mb-3">
     <h2 class="m-0">Contact List</h2>
     <RouterLink v-if="auth.isAuthenticate" to="/contacts/create" class="btn btn-success fw-bold">New</RouterLink>
   </div>
   <div v-if="contacts?.length">
     <div class="row">
-      <div v-for="contact in contacts" :key="contact.id" class="col-lg-4">
+      <div v-for="contact in contacts" :key="contact.id" class="col-lg-4 mb-4">
         <CardContact :info="contact" v-on:delete="deleted" />
       </div>
     </div>
@@ -18,11 +17,12 @@
 
 <script>
 import { auth } from '@/auth'
-import { getItems } from '@/services/local-storage'
+import storageMixin from '@/storageMixin'
 import CardContact from '@/components/CardContact.vue'
-import AppBreadcrumb from '@/components/AppBreadcrumb.vue';
+
 export default {
   name: 'HomeView',
+  mixins: [storageMixin],
   data() {
     return {
       contacts: []
@@ -32,16 +32,13 @@ export default {
     return { auth }
   },
   mounted() {
-    this.contacts = getItems();
+    this.contacts = this.getItems();
   },
   methods: {
     deleted() {
-      this.contacts = getItems();
+      this.contacts = this.getItems();
     }
   },
-  components: {
-    CardContact,
-    AppBreadcrumb
-  }
+  components: { CardContact }
 }
 </script>

@@ -21,11 +21,11 @@
         </div>
         <div class="col-12">
           <label for="contact" class="form-label">Contact</label>
-          <input v-model="form.contact" type="text" class="form-control" minlength="9" maxlength="9" id="contact">
+          <input v-model="form.contact" type="text" class="form-control" minlength="9" maxlength="9" id="contact" required>
         </div>
         <div class="col-12">
           <label for="email" class="form-label">Email</label>
-          <input v-model="form.email" type="email" class="form-control" id="email">
+          <input v-model="form.email" type="email" class="form-control" id="email" required>
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Submit</button>
