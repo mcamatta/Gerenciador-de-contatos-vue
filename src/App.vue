@@ -3,7 +3,7 @@
     <nav class="navbar bg-light mb-5 py-3">
       <div class="container">
         <h1>
-          <RouterLink to="/" class="navbar-brand fs-2">AlfaSoft Contacts</RouterLink><br>
+          <RouterLink to="/" class="navbar-brand fs-2">Contact Management</RouterLink><br>
         </h1>
         <RouterLink v-if="!auth.isAuthenticate" to="/login" class="fs-5">Login</RouterLink>
         <a href="#" v-else class="fs-5" @click="auth.logout">Logout</a>
