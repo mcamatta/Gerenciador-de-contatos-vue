@@ -18,12 +18,29 @@ function setItem(item) {
   localStorage.setItem("contacts", JSON.stringify(item));
 }
 
+function validateRequest(request) {
+  let items = getItems();
+
+  if(!items?.length) {
+    return true;
+  }
+
+  let sameFields = items.filter(item => {
+    if(request.id) {
+      return (item.contact == request.contact || item.email == request.email) && request.id != item.id;
+    } 
+    return item.contact == request.contact || item.email == request.email
+  })
+
+  if(sameFields.length) {
+    throw new Error('Contact alredy exists')
+  }
+}
+
 function store(contact) {
   let items = getItems();
 
-  if (!Object.keys(contact).length) {
-    return;
-  }
+  validateRequest(contact)
 
   if (!items?.length) {
     setItem([{ ...contact, id: 1 }]);
@@ -31,7 +48,6 @@ function store(contact) {
   }
   
   let id = items.length + 1;
-  
   items.push({...contact, id})
   setItem(items);
 
@@ -40,6 +56,8 @@ function store(contact) {
 
 function update(contact) {
   let items = getItems();
+
+  validateRequest(contact)
 
   items = items.map(function(item) {
     if(item.id == contact.id) {

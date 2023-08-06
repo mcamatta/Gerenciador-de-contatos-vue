@@ -1,11 +1,14 @@
 <template>
+  <div v-if="error" class="alert alert-danger mx-5 my-3">
+    {{ error }}
+  </div>
   <form class="row" v-on:submit.prevent="$emit('onSubmit', form)">
     <div class="col-lg-7 mx-auto">
       <div class="row g-3">
         <div class="col-12">
           <div v-if="!form.picture">
             <label for="picture" class="form-label">Picture</label>
-            <input class="form-control" @change="onFileChange" type="file" id="picture" accept="image/*">
+            <input class="form-control" @change="onFileChange" type="file" id="picture" accept="image/*" required>
           </div>
           <div v-else class="d-flex flex-column gap-2 align-items-start">
             <img :src="form.picture" class="rounded-circle ms-2">
@@ -14,11 +17,11 @@
         </div>
         <div class="col-12">
           <label for="name" class="form-label">Name</label>
-          <input v-model="form.name" type="text" class="form-control" id="name">
+          <input v-model="form.name" type="text" class="form-control" id="name" minlength="5" required>
         </div>
         <div class="col-12">
           <label for="contact" class="form-label">Contact</label>
-          <input v-model="form.contact" type="text" class="form-control" id="contact">
+          <input v-model="form.contact" type="text" class="form-control" minlength="9" maxlength="9" id="contact">
         </div>
         <div class="col-12">
           <label for="email" class="form-label">Email</label>
@@ -35,7 +38,8 @@
 export default {
   emits: ['onSubmit'],
   props: {
-    contact: Object
+    contact: Object,
+    error: String
   },
   data() {
     return {
