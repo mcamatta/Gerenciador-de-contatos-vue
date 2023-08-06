@@ -12,7 +12,7 @@
       <div v-if="auth.isAuthenticate" class="d-flex gap-2 mt-3 justify-content-end">
         <RouterLink :to="{ name: 'contact', params: { id: info.id } }" class="text-primary">Details</RouterLink>
         <RouterLink :to="{ name: 'contacts.edit', params: { id: info.id } }" class="text-warning">Edit</RouterLink>
-        <a href="#" @click="openModal(info.id)" class="text-danger">Delete</a>
+        <a href="#" @click="$emit('delete', info.id)" class="text-danger">Delete</a>
       </div>
     </div>
   </div>
@@ -28,25 +28,6 @@ export default {
   mixins: [storageMixin],
   setup() {
     return { auth }
-  },
-  methods: {
-    openModal(id) {
-      let vm = this
-      this.$swal({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-      if (result.isConfirmed) {
-        vm.removeItem(id);
-        this.$emit('delete')
-      }
-    })
-    }
   }
 }
 </script>

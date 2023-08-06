@@ -13,11 +13,25 @@
   <div v-else class="alert alert-info mt-4 fs-5">
     There are no registered contacts.
   </div>
+  <Modal v-if="isModalVisible" @close="closeModal">
+    <template v-slot:header>
+      Are you sure?
+    </template>
+
+    <template v-slot:body>
+      It will not be possible to undo this action.
+    </template>
+
+    <template v-slot:footer>
+      <button class="btn btn-danger" @click="remove">Delete</button>
+    </template>
+  </Modal>
 </template>
 
 <script>
 import { auth } from '@/auth'
 import storageMixin from '@/storageMixin'
+import Modal from '@/components/Modal.vue'
 import CardContact from '@/components/CardContact.vue'
 
 export default {
@@ -25,7 +39,9 @@ export default {
   mixins: [storageMixin],
   data() {
     return {
-      contacts: []
+      id: null,
+      contacts: [],
+      isModalVisible: false,
     }
   },
   setup() {
@@ -35,10 +51,25 @@ export default {
     this.contacts = this.getItems();
   },
   methods: {
-    deleted() {
+    deleted(id) {
+      this.showModal()
+      this.id = id
+    },
+    remove() {
+      this.removeItem(this.id);
+      this.isModalVisible = false;
       this.contacts = this.getItems();
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
     }
   },
-  components: { CardContact }
+  components: {
+    CardContact,
+    Modal
+  }
 }
 </script>
