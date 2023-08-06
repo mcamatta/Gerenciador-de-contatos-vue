@@ -6,7 +6,7 @@
   <FormContact @onSubmit="store"/>
 </template>
 <script>
-import { store } from '@/helper/local-storage'
+import { store } from '@/services/local-storage'
 import FormContact from '@/components/FormContact.vue'
 
 export default {

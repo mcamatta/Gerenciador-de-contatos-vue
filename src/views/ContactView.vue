@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import { findItem } from '@/helper/local-storage';
+import { findItem } from '@/services/local-storage';
 
 export default {
   data() {

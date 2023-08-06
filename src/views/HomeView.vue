@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { getItems } from '@/helper/local-storage'
+import { getItems } from '@/services/local-storage'
 import CardContact from '@/components/CardContact.vue'
 export default {
   name: 'HomeView',

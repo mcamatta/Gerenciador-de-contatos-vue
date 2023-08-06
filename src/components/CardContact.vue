@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import { removeItem } from '@/helper/local-storage'
+import { removeItem } from '@/services/local-storage'
 
 export default {
   props: {

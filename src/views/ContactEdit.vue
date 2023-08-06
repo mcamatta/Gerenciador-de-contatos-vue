@@ -7,7 +7,7 @@
 </template>
 <script>
 import FormContact from '@/components/FormContact.vue';
-import { findItem, update } from '@/helper/local-storage';
+import { findItem, update } from '@/services/local-storage';
 
 export default {
   data() {
