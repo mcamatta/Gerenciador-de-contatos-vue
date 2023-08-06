@@ -4,6 +4,7 @@ import LoginView from '../views/LoginView.vue'
 import ContactView from '../views/ContactView.vue'
 import ContactCreate from '../views/ContactCreate.vue'
 import ContactEdit from '../views/ContactEdit.vue'
+import { auth } from '@/auth'
 
 const routes = [
   {
@@ -37,10 +38,8 @@ const router = createRouter({
   routes
 })
 
-const isAuthenticate = localStorage.getItem('auth')
-
 router.beforeEach((to) => {
-  if(to.name != 'home' && to.name != 'login' && isAuthenticate === 'false') {
+  if(to.name != 'home' && to.name != 'login' && !auth.isAuthenticate) {
     return false;
   }
 })

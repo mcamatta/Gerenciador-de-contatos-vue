@@ -1,8 +1,8 @@
 <template>
-  <AppBreadcrumb :items="[{name: 'Home', url: {name: 'home'}}]"/>
+  <AppBreadcrumb :items="[{ name: 'Home', url: { name: 'home' } }]" />
   <div class="d-flex justify-content-between mb-3">
     <h2 class="m-0">Contact List</h2>
-    <RouterLink to="/contacts/create" class="btn btn-success fw-bold">New</RouterLink>
+    <RouterLink v-if="auth.isAuthenticate" to="/contacts/create" class="btn btn-success fw-bold">New</RouterLink>
   </div>
   <div v-if="contacts?.length">
     <div class="row">
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { auth } from '@/auth'
 import { getItems } from '@/services/local-storage'
 import CardContact from '@/components/CardContact.vue'
 import AppBreadcrumb from '@/components/AppBreadcrumb.vue';
@@ -26,6 +27,9 @@ export default {
     return {
       contacts: []
     }
+  },
+  setup() {
+    return { auth }
   },
   mounted() {
     this.contacts = getItems();
@@ -38,6 +42,6 @@ export default {
   components: {
     CardContact,
     AppBreadcrumb
-}
+  }
 }
 </script>

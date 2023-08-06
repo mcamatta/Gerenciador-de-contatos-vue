@@ -9,19 +9,24 @@
           <p class="card-subtitle">{{ info.email }}</p>
         </div>
       </div>
-      <div class="d-flex gap-2 mt-3 justify-content-end">
+      <div v-if="auth.isAuthenticate" class="d-flex gap-2 mt-3 justify-content-end">
         <RouterLink :to="{ name: 'contact', params: { id: info.id } }" class="text-primary">Details</RouterLink>
+        <RouterLink :to="{ name: 'contacts.edit', params: { id: info.id } }" class="text-warning">Edit</RouterLink>
         <a href="#" @click="openModal(info.id)" class="text-danger">Delete</a>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { auth } from '@/auth'
 import { removeItem } from '@/services/local-storage'
 
 export default {
   props: {
     info: Object
+  },
+  setup() {
+    return { auth }
   },
   methods: {
     openModal(id) {
